@@ -1,0 +1,39 @@
+# vim: set ft=yaml: 
+# Font configuration
+font:
+  normal:
+    #family: M+ 1m 
+    #family: DaddyTimeMono Nerd Font Mono
+    #family: Monofuritalic Nerd Font Mono
+    
+    #family: MesloLGM Nerd Font Mono
+    #family: 3270SemiNarrow Nerd Font Mono
+    #family: 3270Medium Nerd Font Mono
+    #family: AurulentSansMono NF
+    #family: Cousine Nerd Font Mono
+    #family: iMWritingMonoS Nerd Font
+    #family: ShureTechMono Nerd Font
+    #family: SpaceMono NF
+    family: CodeNewRoman NF
+
+    #family: CaskaydiaCove Nerd Font
+    #family: JetBrainsMono Nerd Font Mono
+    #family: BigBlue_Terminal_437TT Nerd Font
+    #family: BlexMono Nerd Font Mono
+    #family: FantasqueSansMono Nerd Font
+    #family: Liberation Mono
+  size: 11.0
+
+# Colors
+colors:
+  # Default colors
+  primary:
+    background: '#212733'
+
+      #env:
+      #  TERM: vte-256color
+  #TERM: xterm-256color
+
+key_bindings:
+  # remove the line below!
+  - { key: W, mods: Command, action: Quit }

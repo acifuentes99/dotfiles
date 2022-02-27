@@ -1,0 +1,3 @@
+[submodule "nvim/.config/nvim/vimrc"]
+	path = nvim/.config/nvim/vimrc
+	url = https://github.com/acifuentes99/vimrc
