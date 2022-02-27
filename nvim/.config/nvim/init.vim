@@ -1,2 +1,2 @@
 "Default VimRC running on machine
-source $HOME/.config/nvim/vimrc/salesforceIde/vimrc.vim
+source $HOME/.config/nvim/vimrc/linuxPC/vimrc.vim
