@@ -1,4 +1,0 @@
-$terminal = foot
-$fileManager = pcmanfm
-$menu = rofi -show drun
-$window = rofi -show switcher
