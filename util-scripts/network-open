@@ -1,0 +1,2 @@
+#!/bin/bash
+/usr/share/sway/scripts/once.sh footclient --app-id floating_shell --window-size-chars 82x25 nmtui connect

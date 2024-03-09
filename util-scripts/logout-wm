@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [[ $XDG_CURRENT_DESKTOP -eq "Hyprland" ]]; then
+    hyprctl dispatch exit
+elif [[ $XDG_CURRENT_DESKTOP -eq "Sway" ]]; then
+    swaymsg exit
+fi

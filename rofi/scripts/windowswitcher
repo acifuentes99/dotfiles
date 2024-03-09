@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+# rofi -show window for Hyprland, basically
+# Script Url : https://github.com/hyprwm/Hyprland/discussions/830
+
+getWindowStatus () {
+    state="$(hyprctl -j clients)"
+    active_window="$(hyprctl -j activewindow)"
+    current_addr="$(echo "$active_window" | gojq -r '.address')"
+
+    window="$(echo "$state" |
+        gojq -r '.[] | select(.monitor != -1 ) | "\(.address)    \(.workspace.name)    \(.title)"' |
+        sort -r)"
+    echo "$window"
+}
+
+executeCommand() {
+    coproc ( "$@"  > /dev/null  2>&1 )
+}
+
+setWindow() {
+    window="$@"
+    echo $window
+    addr="$(echo "$window" | awk '{print $1}')"
+    ws="$(echo "$window" | awk '{print $2}')"
+
+    if [[ "$addr" =~ focused* ]]; then
+        echo 'already focused, exiting'
+        exit 0
+    fi
+
+    fullscreen_on_same_ws="$(echo "$state" | gojq -r ".[] | select(.fullscreen == true) | select(.workspace.name == \"$ws\") | .address")"
+
+    if [[ "$window" != "" ]]; then
+        if [[ "$fullscreen_on_same_ws" == "" ]]; then
+            executeCommand hyprctl dispatch focuswindow address:${addr}
+            exit 0
+        else
+            notify-send 'Complex switch' "$window"
+            executeCommand hyprctl --batch "dispatch focuswindow address:${fullscreen_on_same_ws}; dispatch fullscreen 1; dispatch focuswindow address:${addr}; dispatch fullscreen 1"
+            exit 0
+        fi
+        exit 0
+    fi
+}
+
+if [[ -z "$@" ]]; then
+    getWindowStatus
+else
+    setWindow $@
+fi

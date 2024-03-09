@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# rofi -show window for Hyprland, basically
+# Script Url : https://github.com/hyprwm/Hyprland/discussions/830
+
+state="$(hyprctl -j clients)"
+active_window="$(hyprctl -j activewindow)"
+
+current_addr="$(echo "$active_window" | gojq -r '.address')"
+
+window="$(echo "$state" |
+    gojq -r '.[] | select(.monitor != -1 ) | "\(.address)    \(.workspace.name)    \(.title)"' |
+    sort -r |
+    rofi -dmenu -i -markup-rows -no-fixed-num-lines -theme-str 'window { width: 20%; }' -display-column-separator "    " -display-columns 2,3)"
+echo "$window"
